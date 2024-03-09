@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Array
 {   
@@ -89,47 +90,61 @@ void delete_element_from_Array(struct Array *A, int position)
     
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     int n;
     struct Array A;
 
-    printf("Enter Size of Array -> ");
-    scanf("%d",&n);
+    
 
-    init_Array(&A , n);
+    if(argc >= 2)
+    {
+        int size = argc-1;
+        init_Array(&A , size);
+        for(int i = 1; i < argc; i++ )
+        {
+            Insert_element_in_Array(&A,atoi(argv[i]),i);
+        }
+        display(&A);
+    }
+    else
+    {
+        printf("Enter Size of Array -> ");
+        scanf("%d",&n);
+        init_Array(&A , n);
 
-    Insert_element_in_Array(&A,1,1);
-    display(&A);
-    Insert_element_in_Array(&A,2,2);
-    Insert_element_in_Array(&A,3,3);
-    Insert_element_in_Array(&A,4,2);
-    Insert_element_in_Array(&A,5,1);
-    Insert_element_in_Array(&A,5,5);
-    Insert_element_in_Array(&A,10,7);
-    Insert_element_in_Array(&A,10,9);
-    append_in_Array(&A,20);
-    append_in_Array(&A,30);
-    append_in_Array(&A,40);
-    append_in_Array(&A,50);
-    display(&A);
-    delete_element_from_Array(&A,11);
-    display(&A);
-    delete_element_from_Array(&A,1);
-    display(&A);
-    delete_element_from_Array(&A,6);
-    display(&A);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    delete_element_from_Array(&A,1);
-    display(&A);
-    delete_element_from_Array(&A,1);
-    display(&A);
+        Insert_element_in_Array(&A,1,1);
+        display(&A);
+        Insert_element_in_Array(&A,2,2);
+        Insert_element_in_Array(&A,3,3);
+        Insert_element_in_Array(&A,4,2);
+        Insert_element_in_Array(&A,5,1);
+        Insert_element_in_Array(&A,5,5);
+        Insert_element_in_Array(&A,10,7);
+        Insert_element_in_Array(&A,10,9);
+        append_in_Array(&A,20);
+        append_in_Array(&A,30);
+        append_in_Array(&A,40);
+        append_in_Array(&A,50);
+        display(&A);
+        delete_element_from_Array(&A,11);
+        display(&A);
+        delete_element_from_Array(&A,1);
+        display(&A);
+        delete_element_from_Array(&A,6);
+        display(&A);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        delete_element_from_Array(&A,1);
+        display(&A);
+        delete_element_from_Array(&A,1);
+        display(&A);
+    }
 
 
     return 0;
