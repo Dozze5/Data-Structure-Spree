@@ -230,6 +230,24 @@ void reverse_Linked_list_using_loop(Node **head)
 
 }
 
+void reverse_Linked_list_using_recursion(Node *curr, Node *prev, Node **head)
+{
+    if(curr == NULL)
+    {
+        return;
+    }
+    if(curr->next == NULL)
+    {
+        *head = curr;
+        curr->next = prev;
+        return;
+    }
+
+    Node *nextNode  = curr->next;
+    curr->next = prev;
+    reverse_Linked_list_using_recursion(nextNode,curr,head);
+}
+
 void display(Node *head)
 {
     if(!head)
@@ -277,6 +295,8 @@ int main()
     // delete_by_position(&head,1);
     // display(head);
     reverse_Linked_list_using_loop(&head);
+    display(head);
+    reverse_Linked_list_using_recursion(head,NULL,&head);
     display(head);
     printf("\n%d",size);
     free(head);
