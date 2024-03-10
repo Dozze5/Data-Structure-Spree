@@ -198,6 +198,38 @@ void delete_by_position(Node **head, int position)
     return;
 }
 
+void reverse_Linked_list_using_loop(Node **head)
+{
+    if(!head)
+    {
+        printf("Linked list is empty size -> %d\n",size);
+        return;
+    }
+    if(!(*head)->next)
+    {
+        printf("Reverserd \n");
+        return;
+    }
+
+    Node *prev = NULL, *curr = *head, *forward = curr->next;
+
+    while(forward)
+    {
+        curr->next = prev;
+        prev = curr;
+        curr = forward;
+        forward = forward->next;
+    }
+    curr->next = prev;
+    prev = curr;
+    *head = prev;
+
+    // forward = NULL;
+    // curr = NULL;
+    // prev = NULL;
+
+}
+
 void display(Node *head)
 {
     if(!head)
@@ -236,13 +268,15 @@ int main()
     // delete_from_head(&head);
     delete_from_tail(&head);
     display(head);
-    delete_by_position(&head,6);
-    delete_by_position(&head,2);
-    delete_by_position(&head,2);
-    delete_by_position(&head,2);
-    delete_by_position(&head,2);
-    delete_by_position(&head,2);
-    delete_by_position(&head,1);
+    // delete_by_position(&head,6);
+    // delete_by_position(&head,2);
+    // delete_by_position(&head,2);
+    // delete_by_position(&head,2);
+    // delete_by_position(&head,2);
+    // delete_by_position(&head,2);
+    // delete_by_position(&head,1);
+    // display(head);
+    reverse_Linked_list_using_loop(&head);
     display(head);
     printf("\n%d",size);
     free(head);
