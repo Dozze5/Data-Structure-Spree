@@ -5,9 +5,9 @@ This repository contains the code for the Data Structure Spree series on my blog
 
 ## Data Structures Covered
 
-- [x] [Arrays]
-- [x] [Linked Lists]
-- [x] [Stacks]
+- [o] [Arrays]
+- [o] [Linked Lists]
+- [o] [Stacks]
 - [x] [Queues]
 - [x] [Trees]
 - [x] [Graphs]
