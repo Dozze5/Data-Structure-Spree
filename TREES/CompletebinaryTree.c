@@ -180,6 +180,154 @@ void printPostorder(TreeNode *root)
     }
 }
 
+void deleteTree(TreeNode *root)
+{
+    if(root)
+    {
+        deleteTree(root->left);
+        deleteTree(root->right);
+        free(root);
+    }
+}
+
+void deleteLast(TreeNode *root)
+{
+    Queue *queue = _init_Queue();
+
+    enqueue(root,queue);
+
+    TreeNode *temp = NULL;
+
+    while(!isEmpty(queue))
+    {
+        temp = dequeue(queue);
+
+        if(temp->left)
+        {
+            if(!temp->left->left && !temp->left->right)
+            {
+                temp->left = NULL;
+                free(temp->left);
+                return;
+            }
+            else
+            {
+                enqueue(temp->left,queue);
+            }
+        }
+
+        if(temp->right)
+        {
+            if(!temp->right->left && !temp->right->right)
+            {
+                temp->right = NULL;
+                free(temp->right);
+                return;
+            }
+            else
+            {
+                enqueue(temp->right,queue);
+            }
+        }
+    }
+
+}
+
+void deleteDeepest(TreeNode *root, TreeNode *delNode)
+{
+    Queue *queue = _init_Queue();
+
+    enqueue(root,queue);
+
+    TreeNode *temp = NULL;
+
+    while(!isEmpty(queue))
+    {
+        temp = dequeue(queue);
+
+        if(temp == delNode)
+        {
+            temp = NULL;
+            free(delNode);
+            return;
+        }
+
+        if(temp->right)
+        {
+            if(temp->right == delNode)
+            {
+                temp->right = NULL;
+                free(delNode);
+                return;
+            }
+            else
+            {
+                enqueue(temp->right,queue);
+            }
+        }
+
+        if(temp->left)
+        {
+            if(temp->left == delNode)
+            {
+                temp->left = NULL;
+                free(delNode);
+                return;
+            }
+            else
+            {
+                enqueue(temp->left,queue);
+            }
+        }
+    }
+}
+
+void deletion(TreeNode *root, int key)
+{
+    if(!root)
+    {
+        return;
+    }
+
+    Queue *queue = _init_Queue();
+
+    enqueue(root,queue);
+
+    TreeNode *keyNode = NULL;
+    TreeNode *front = NULL;
+
+    while(!isEmpty(queue))
+    {
+        front = dequeue(queue);
+
+        if(front->key == key)
+        {
+            keyNode = front;
+        }
+
+        if(front->left)
+        {
+            enqueue(front->left,queue);
+        }
+
+        if(front->right)
+        {
+            enqueue(front->right,queue);
+        }
+    }
+
+    if(keyNode)
+    {
+        int x = front->key;
+        deleteDeepest(root,front);
+        keyNode->key = x;
+    }
+    else
+    {
+        printf("Key not found in the tree\n");
+    }
+}
+
 void levelOrder(TreeNode *root)
 {
     Queue *queue = _init_Queue();
@@ -246,6 +394,13 @@ int main()
     levelOrder(root);
     printf(("\n"));
 
+    structure(root,0);
+
+    // deletion(root,12);
+
+    // deleteLast(root);
+    // deleteLast(root);
+    printf("\n-------------------------------------------------\n");
     structure(root,0);
 
     return 0;
