@@ -1,5 +1,4 @@
-#DATA-STRUCTURE-SPREE
-#DATA-STRUCTURE-SPREE
+# DATA-STRUCTURE-SPREE
 
 This repository contains the code for the Data Structure Spree series on my blog. The series is aimed at explaining the concepts of data structures in a simple and easy to understand manner. The code is written in C and is well documented.
 
